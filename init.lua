@@ -869,6 +869,8 @@ require('lazy').setup({
     end,
   },
 
+  'christoomey/vim-tmux-navigator',
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     lazy = false,
