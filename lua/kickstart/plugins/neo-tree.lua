@@ -14,6 +14,7 @@ return {
   lazy = false,
   keys = {
     { '\\', ':Neotree toggle<CR>', desc = 'NeoTree toggle', silent = true },
+    { '|', ':Neotree reveal<CR>', desc = 'NeoTree reveal' },
   },
   ---@module 'neo-tree'
   ---@type neotree.Config
