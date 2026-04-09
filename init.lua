@@ -187,6 +187,13 @@ vim.diagnostic.config {
   jump = { float = true },
 }
 
+
+vim.keymap.set('n', 'H', '<cmd>BufferLineCyclePrev<CR>', { desc = 'Move focus to the next buffer' })
+vim.keymap.set('n', 'L', '<cmd>BufferLineCycleNext<CR>', { desc = 'Move focus to the prev buffer' })
+
+-- 현재 버퍼를 닫는다. 창을 닫지 않은 상태로
+vim.keymap.set('n', '<C-c>', '<cmd>bp|bd #<CR>', { desc = 'close current buffer without closing window' })
+
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
