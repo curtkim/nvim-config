@@ -820,7 +820,19 @@ require('lazy').setup({
     ---@diagnostic disable-next-line: missing-fields
     opts = { signs = false },
   },
-
+  {
+    '3rd/image.nvim',
+    build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
+    opts = {
+      backend = 'kitty',
+      integrations = {
+        markdown = {
+          enabled = true,
+          download_remote_images = false,
+        },
+      },
+    },
+  },
   { -- Collection of various small independent plugins/modules
     'nvim-mini/mini.nvim',
     config = function()
