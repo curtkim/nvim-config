@@ -242,6 +242,27 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.hl.on_yank() end,
 })
 
+-- Enable treesitter-based folding for markdown files
+--  `foldlevel` controls how many heading levels are open by default
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Enable treesitter folds for markdown',
+  group = vim.api.nvim_create_augroup('kickstart-markdown-fold', { clear = true }),
+  pattern = 'markdown',
+  callback = function()
+    vim.opt_local.foldmethod = 'expr'
+    vim.opt_local.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    vim.opt_local.foldlevel = 99
+    vim.opt_local.foldenable = true
+
+    -- Buffer-local fold keymaps for markdown
+    --  zh: fold more (lower foldlevel), zl: fold less (raise foldlevel)
+    vim.keymap.set('n', 'zh', 'zm', { buffer = true, desc = 'Fold more' })
+    vim.keymap.set('n', 'zl', 'zr', { buffer = true, desc = 'Fold less' })
+    vim.keymap.set('n', 'zH', 'zM', { buffer = true, desc = 'Fold more' })
+    vim.keymap.set('n', 'zL', 'zR', { buffer = true, desc = 'Fold less' })
+  end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
