@@ -258,6 +258,11 @@ vim.api.nvim_create_autocmd('FileType', {
     --  zh: fold more (lower foldlevel), zl: fold less (raise foldlevel)
     vim.keymap.set('n', 'zh', 'zm', { buffer = true, desc = 'Fold more' })
     vim.keymap.set('n', 'zl', 'zr', { buffer = true, desc = 'Fold less' })
+
+    -- z1..z9: set foldlevel directly to that number
+    for i = 0, 9 do
+      vim.keymap.set('n', 'z' .. i, function() vim.opt_local.foldlevel = i end, { buffer = true, desc = 'Set foldlevel to ' .. i })
+    end
     vim.keymap.set('n', 'zH', 'zM', { buffer = true, desc = 'Fold more' })
     vim.keymap.set('n', 'zL', 'zR', { buffer = true, desc = 'Fold less' })
   end,
